@@ -18,5 +18,5 @@ FROM (
 		WHERE YEAR(SALES_DATE) = 2022
 		AND MONTH(SALES_DATE) = 3
 	)
-) UN
+) UN /* Oracle에서는 이렇게 ALIAS를 줄 필요가 없지만, Mysql은 ALIAS를 주지 않으면 무조건 에러(Every derived table must have its own alias) */
 ORDER BY SALES_DATE ASC, PRODUCT_ID ASC, USER_ID ASC;
