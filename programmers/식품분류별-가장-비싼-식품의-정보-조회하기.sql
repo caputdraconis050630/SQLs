@@ -1,0 +1,14 @@
+/*
+	식품분류별 가장 비싼 식품의 정보 조회하기
+	https://school.programmers.co.kr/learn/courses/30/lessons/131116
+*/
+
+SELECT F.CATEGORY, F.PRICE AS MAX_PRICE, F.PRODUCT_NAME
+FROM FOOD_PRODUCT AS F, (
+    SELECT CATEGORY, MAX(PRICE) AS MPRICE
+    FROM FOOD_PRODUCT
+    WHERE CATEGORY IN ('과자', '국', '김치', '식용유')
+    GROUP BY CATEGORY
+) M
+WHERE F.CATEGORY = M.CATEGORY AND F.PRICE = M.MPRICE
+ORDER BY MAX_PRICE DESC;
